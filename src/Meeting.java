@@ -20,6 +20,11 @@ public class Meeting extends Event implements Completable{
     }
 
     @Override
+    public void incomplete() {
+        complete = false;
+    }
+
+    @Override
     public boolean isComplete() {
         return complete;
     }
@@ -44,5 +49,11 @@ public class Meeting extends Event implements Completable{
         Duration duration;
         duration = Duration.ofHours(ChronoUnit.HOURS.between(getDateTime(), endDateTime));
         return duration;
+    }
+
+    @Override
+    public String toString() {
+        return "Meeting: " + getName() + " (Start: " + getDateTime() + ", End: " + endDateTime +
+                ", Location: " + location + ", Status: " + (complete ? "Complete" : "Incomplete") + ")";
     }
 }
